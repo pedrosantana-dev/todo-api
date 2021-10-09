@@ -30,4 +30,21 @@ export class TodoService {
         }
     }
 
+    async update(id: number, status: TodoStatus) {
+        try {
+            await this.repo.update({ id }, { status });
+            return await this.repo.findOne({ id });
+        } catch (error) {
+            throw new InternalServerErrorException('Algo deu errado');
+        }
+    }
+
+    async delete(id: number) {
+        try {
+            return await this.repo.delete({ id });
+        } catch (error) {
+            throw new InternalServerErrorException('Algo deu errado');
+        }
+    }
+
 }
