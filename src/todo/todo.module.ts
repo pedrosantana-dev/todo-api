@@ -1,3 +1,4 @@
+import { AuthModule } from './../auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Module } from '@nestjs/common';
 import { TodoController } from './todo.controller';
@@ -6,7 +7,8 @@ import { TodoEntity } from 'src/entity/todo.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([TodoEntity])
+    TypeOrmModule.forFeature([TodoEntity]),
+    AuthModule
   ],
   controllers: [TodoController],
   providers: [TodoService]

@@ -1,3 +1,4 @@
+import { JwtCustomStrategy } from './jwt-custom.strategy';
 import { UserEntity } from './../entity/user.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Module } from '@nestjs/common';
@@ -20,7 +21,8 @@ import { PassportModule } from '@nestjs/passport';
       defaultStrategy: 'jwt'
     })
   ],
-  providers: [AuthService],
-  controllers: [AuthController]
+  providers: [AuthService, JwtCustomStrategy],
+  controllers: [AuthController],
+  exports: [PassportModule, JwtCustomStrategy]
 })
 export class AuthModule { }
